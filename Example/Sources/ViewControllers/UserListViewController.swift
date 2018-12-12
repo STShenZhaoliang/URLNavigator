@@ -22,6 +22,8 @@ class UserListViewController: UIViewController {
     User(name: "facebook", urlString: "navigator://user/facebook"),
     User(name: "alert", urlString: "navigator://alert?title=Hello&message=World"),
     User(name: "fallback", urlString: "navigator://notMatchable"),
+    User(name: "devxoul", urlString: "navigator://user/devxoul"),
+    User(name: "devxoul", urlString: "navigator://testshow/devxoul"),
   ]
 
 

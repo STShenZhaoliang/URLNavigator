@@ -26,6 +26,16 @@ enum NavigationMap {
       print("[Navigator] NavigationMap.\(#function):\(#line) - global fallback function is called")
       return true
     }
+
+    navigator.register("navigator://testshow/<username>") { url, values, context in
+        guard let username = values["username"] as? String else { return nil }
+        return TestShowController(navigator: navigator, username: username)
+    }
+
+    navigator.register("navigator://user/<username>") { url, values, context in
+        guard let username = values["username"] as? String else { return nil }
+        return UserViewController(navigator: navigator, username: username)
+    }
   }
 
   private static func webViewControllerFactory(
