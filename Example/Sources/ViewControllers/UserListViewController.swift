@@ -91,7 +91,10 @@ extension UserListViewController: UITableViewDelegate {
 
     let user = self.users[indexPath.row]
 
-    let isPushed = self.navigator.push(user.urlString) != nil
+    let controller = self.navigator.push(user.urlString)
+    print(controller as Any)
+
+    let isPushed = controller != nil
     if isPushed {
       print("[Navigator] push: \(user.urlString)")
     } else {
