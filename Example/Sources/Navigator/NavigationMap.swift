@@ -12,7 +12,7 @@ import UIKit
 import URLNavigator
 
 enum NavigationMap {
-  static func initialize(navigator: NavigatorType) {
+  static func initialize(navigator: Navigator) {
     navigator.register("navigator://user/<username>") { url, values, context in
       guard let username = values["username"] as? String else { return nil }
       return UserViewController(navigator: navigator, username: username)
@@ -26,16 +26,6 @@ enum NavigationMap {
       print("[Navigator] NavigationMap.\(#function):\(#line) - global fallback function is called")
       return true
     }
-
-    navigator.register("navigator://testshow/<username>") { url, values, context in
-        guard let username = values["username"] as? String else { return nil }
-        return TestShowController(navigator: navigator, username: username)
-    }
-
-    navigator.register("navigator://user/<username>") { url, values, context in
-        guard let username = values["username"] as? String else { return nil }
-        return UserViewController(navigator: navigator, username: username)
-    }
   }
 
   private static func webViewControllerFactory(
@@ -47,7 +37,7 @@ enum NavigationMap {
     return SFSafariViewController(url: url)
   }
 
-  private static func alert(navigator: NavigatorType) -> URLOpenHandlerFactory {
+  private static func alert(navigator: Navigator) -> URLOpenHandlerFactory {
     return { url, values, context in
       guard let title = url.queryParameters["title"] else { return false }
       let message = url.queryParameters["message"]

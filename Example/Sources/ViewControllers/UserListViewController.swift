@@ -14,7 +14,7 @@ class UserListViewController: UIViewController {
 
   // MARK: Properties
 
-  private let navigator: NavigatorType
+  private let navigator: Navigator
   let users = [
     User(name: "devxoul", urlString: "navigator://user/devxoul"),
     User(name: "apple", urlString: "navigator://user/apple"),
@@ -22,8 +22,6 @@ class UserListViewController: UIViewController {
     User(name: "facebook", urlString: "navigator://user/facebook"),
     User(name: "alert", urlString: "navigator://alert?title=Hello&message=World"),
     User(name: "fallback", urlString: "navigator://notMatchable"),
-    User(name: "devxoul", urlString: "navigator://user/devxoul"),
-    User(name: "devxoul", urlString: "navigator://testshow/devxoul"),
   ]
 
 
@@ -34,7 +32,7 @@ class UserListViewController: UIViewController {
 
   // MARK: Initializing
 
-  init(navigator: NavigatorType) {
+  init(navigator: Navigator) {
     self.navigator = navigator
     super.init(nibName: nil, bundle: nil)
     self.title = "GitHub Users"
@@ -93,10 +91,7 @@ extension UserListViewController: UITableViewDelegate {
 
     let user = self.users[indexPath.row]
 
-    let controller = self.navigator.push(user.urlString)
-    print(controller as Any)
-
-    let isPushed = controller != nil
+    let isPushed = self.navigator.push(user.urlString) != nil
     if isPushed {
       print("[Navigator] push: \(user.urlString)")
     } else {

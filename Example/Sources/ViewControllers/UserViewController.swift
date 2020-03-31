@@ -14,7 +14,7 @@ final class UserViewController: UIViewController {
 
   // MARK: Properties
 
-  private let navigator: NavigatorType
+  private let navigator: Navigator
   let username: String
   var repos = [Repo]()
 
@@ -26,7 +26,7 @@ final class UserViewController: UIViewController {
 
   // MARK: Initializing
 
-  init(navigator: NavigatorType, username: String) {
+  init(navigator: Navigator, username: String) {
     self.navigator = navigator
     self.username = username
     super.init(nibName: nil, bundle: nil)
